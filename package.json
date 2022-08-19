@@ -1,17 +1,21 @@
 {
-	"name": "escape-string-regexp",
+	"name": "@esm2cjs/escape-string-regexp",
 	"version": "5.0.0",
-	"description": "Escape RegExp special characters",
+	"description": "Escape RegExp special characters. This is a fork of sindresorhus/escape-string-regexp, but with CommonJS support.",
 	"license": "MIT",
-	"repository": "sindresorhus/escape-string-regexp",
-	"funding": "https://github.com/sponsors/sindresorhus",
+	"repository": "esm2cjs/escape-string-regexp",
+	"funding": "https://github.com/sponsors/AlCalzone",
 	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "https://sindresorhus.com"
+		"name": "Dominic Griesel",
+		"email": "d.griesel@gmx.net"
 	},
-	"type": "module",
-	"exports": "./index.js",
+	"exports": {
+		".": {
+			"import": "./esm/index.js",
+			"require": "./cjs/index.js"
+		},
+		"./package.json": "./package.json"
+	},
 	"engines": {
 		"node": ">=12"
 	},
@@ -19,8 +23,8 @@
 		"test": "xo && ava && tsd"
 	},
 	"files": [
-		"index.js",
-		"index.d.ts"
+		"cjs/",
+		"esm/"
 	],
 	"keywords": [
 		"escape",
@@ -36,5 +40,31 @@
 		"ava": "^3.15.0",
 		"tsd": "^0.14.0",
 		"xo": "^0.38.2"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"main": "cjs/index.js",
+	"module": "esm/index.js",
+	"types": "esm/index.d.ts",
+	"typesVersions": {
+		"*": {
+			"esm/index.d.ts": [
+				"esm/index.d.ts"
+			],
+			"cjs/index.d.ts": [
+				"esm/index.d.ts"
+			],
+			"*": [
+				"esm/*"
+			]
+		}
+	},
+	"xo": {
+		"ignores": [
+			"cjs",
+			"**/*.test-d.ts",
+			"**/*.d.ts"
+		]
 	}
 }
