@@ -1,34 +1,52 @@
-# escape-string-regexp
+# @esm2cjs/escape-string-regexp
 
-> Escape RegExp special characters
+This is a fork of https://github.com/sindresorhus/escape-string-regexp, but automatically patched to support ESM **and** CommonJS, unlike the original repository.
 
 ## Install
 
+You can use an npm alias to install this package under the original name:
+
 ```
-$ npm install escape-string-regexp
+npm i escape-string-regexp@npm:@esm2cjs/escape-string-regexp
+```
+
+```jsonc
+// package.json
+"dependencies": {
+    "escape-string-regexp": "npm:@esm2cjs/escape-string-regexp"
+}
+```
+
+but `npm` might dedupe this incorrectly when other packages depend on the replaced package. If you can, prefer using the scoped package directly:
+
+```
+npm i @esm2cjs/escape-string-regexp
+```
+
+```jsonc
+// package.json
+"dependencies": {
+    "@esm2cjs/escape-string-regexp": "^ver.si.on"
+}
 ```
 
 ## Usage
 
 ```js
-import escapeStringRegexp from 'escape-string-regexp';
+// Using ESM import syntax
+import escapeStringRegexp from "@esm2cjs/escape-string-regexp";
 
-const escapedString = escapeStringRegexp('How much $ for a 🦄?');
-//=> 'How much \\$ for a 🦄\\?'
-
-new RegExp(escapedString);
+// Using CommonJS require()
+const escapeStringRegexp = require("@esm2cjs/escape-string-regexp").default;
 ```
 
-You can also use this to escape a string that is inserted into the middle of a regex, for example, into a character class.
+> **Note:**
+> Because the original module uses `export default`, you need to append `.default` to the `require()` call.
 
----
+For more details, please see the original [repository](https://github.com/sindresorhus/escape-string-regexp).
 
-<div align="center">
-	<b>
-		<a href="https://tidelift.com/subscription/pkg/npm-escape-string-regexp?utm_source=npm-escape-string-regexp&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
-	</b>
-	<br>
-	<sub>
-		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
-	</sub>
-</div>
+## Sponsoring
+
+To support my efforts in maintaining the ESM/CommonJS hybrid, please sponsor [here](https://github.com/sponsors/AlCalzone).
+
+To support the original author of the module, please sponsor [here](https://github.com/sindresorhus/escape-string-regexp).
